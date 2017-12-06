@@ -7,6 +7,7 @@ import {LocationStep} from "./steps/location/location-step";
 import {ItemsStep} from "./steps/items/items-step";
 import {SummaryStep} from "./steps/summary/summary-step";
 import {userInfo} from "../authen/user-info";
+import store from "../authen/user-store";
 
 export class OrderForm extends RComponent {
     constructor(props, context) {
@@ -42,7 +43,11 @@ export class OrderForm extends RComponent {
             ],
         };
 
-        this.onUnmount(userInfo.onChange((user) => user && this.setState({customer: user})));
+        // this.onUnmount(userInfo.onChange((user) => user && this.setState({customer: user})));
+      store.subscribe(()=>{
+          let user = store.getState().User;
+          user && this.setState({customer:user})
+      });
     }
 
     render() {

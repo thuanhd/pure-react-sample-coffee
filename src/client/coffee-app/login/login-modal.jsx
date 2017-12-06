@@ -1,6 +1,8 @@
-
+import React from 'react';
 import {modal} from "../../common/modal/modal";
 import {userInfo} from "../authen/user-info";
+
+import store, {action_SomeoneLogin} from '../authen/user-store';
 
 const loginModal = {
     show() {
@@ -11,7 +13,8 @@ const loginModal = {
 
                 <div className="" onClick={() => {
                     close();
-                    return userInfo.setUser({name: "Blah"});
+                    store.dispatch(action_SomeoneLogin({name: "Blah"}));
+                    // return userInfo.setUser({name: "Blah"});
                 }}>
                     Đừng lo password, bấm đây login luôn
                 </div>
